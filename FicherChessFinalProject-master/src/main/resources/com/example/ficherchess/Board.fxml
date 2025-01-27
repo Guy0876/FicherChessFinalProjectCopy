@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+
+<GridPane fx:id="chessBoard" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.ficherchess.Controller">
+    <!-- Define the chessboard squares -->
+    <children>
+        <!-- Manually create 8x8 grid of squares with onMouseClicked event -->
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="0" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <!-- Repeat for all rows and columns -->
+        <!-- Row 1 -->
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="1" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <!-- Continue for rows 2 to 7 -->
+        <!-- Row 2 -->
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="2" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <!-- Continue for rows 3 to 7 -->
+        <!-- Row 3 -->
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="3" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <!-- Continue for rows 4 to 7 -->
+        <!-- Row 4 -->
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="4" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <!-- Continue for rows 5 to 7 -->
+        <!-- Row 5 -->
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="5" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <!-- Continue for rows 6 to 7 -->
+        <!-- Row 6 -->
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="6" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <!-- Continue for row 7 -->
+        <!-- Row 7 -->
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="0" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="1" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="2" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="3" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="4" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="5" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="6" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="green"/>
+        </StackPane>
+        <StackPane GridPane.rowIndex="7" GridPane.columnIndex="7" onMouseClicked="#handleSquareClick">
+            <Rectangle width="50" height="50" fill="white"/>
+        </StackPane>
+    </children>
+</GridPane>
