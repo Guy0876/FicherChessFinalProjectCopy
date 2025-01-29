@@ -81,7 +81,7 @@ public class Model {
         selectedPiece = null;
 
         // Check if the move puts the opponent's king in check
-        if (isKingInCheck(!isWhiteTurn)) {
+        if (isKingInCheck(isWhiteTurn)) {
             System.out.println((isWhiteTurn ? "Black" : "White") + " king is in check!");
             Piece.check = true;
         }
@@ -105,12 +105,12 @@ public class Model {
             }
         }
         if(Piece.check) {
-            moves = filterMovesThatResolveCheck(selectedPiece, moves);
+            moves = filterMovesThatResolveCheck(selectedPiece, moves, specificPiece);
         }
         return moves;
     }
     public long findKingPosition(boolean isWhite) {
-        ArrayList<Piece> pieces = isWhite ? blackPieces : whitePieces;
+        ArrayList<Piece> pieces = isWhite ? whitePieces : blackPieces;
         for (Piece piece : pieces) {
             if (piece instanceof King) {
                 return piece.getBitboard();
@@ -120,7 +120,7 @@ public class Model {
     }
     public boolean isKingInCheck(boolean isWhite) {
         long kingPosition = findKingPosition(isWhite);
-        ArrayList<Piece> opponentPieces = isWhite ? whitePieces : blackPieces;
+        ArrayList<Piece> opponentPieces = isWhite ? blackPieces : whitePieces;
         for (Piece piece : opponentPieces) {
             if ((piece.possibleMoves(piece.getBitboard()) & kingPosition) != 0) {
                 return true;
@@ -129,23 +129,81 @@ public class Model {
         return false;
     }
 
-    public boolean doesMoveResolveCheck(Piece piece, long movePosition) {
+    public boolean doesMoveResolveCheck(Piece piece, long movePosition, long specificPiece) {
         long originalPosition = piece.getBitboard();
-        piece.setBitboard(movePosition);
+        long originalAllPieces = Piece.allPieces;
+        long originalWhitePieces = Piece.whitePieces;
+        long originalBlackPieces = Piece.blackPieces;
+
+        // Find the piece at the move position (if any)
+        Piece capturedPiece = getPieceAtPosition(movePosition);
+
+        // Perform the move
+        piece.setBitboard((originalPosition & ~specificPiece) | movePosition);
+
+        if (piece.isWhite()) {
+            Piece.whitePieces = (originalWhitePieces & ~specificPiece) | movePosition;
+        } else {
+            Piece.blackPieces = (originalBlackPieces & ~specificPiece) | movePosition;
+        }
+
+        // Remove the captured piece from the board
+        if (capturedPiece != null) {
+            capturedPiece.setBitboard(capturedPiece.getBitboard() & ~movePosition);
+            Piece.allPieces &= ~movePosition;
+            if (capturedPiece.isWhite()) {
+                Piece.whitePieces &= ~movePosition;
+            } else {
+                Piece.blackPieces &= ~movePosition;
+            }
+        }
+        Piece.allPieces = (originalAllPieces & ~specificPiece) | movePosition;
+
         boolean isInCheck = isKingInCheck(piece.isWhite());
-        piece.setBitboard(originalPosition); // Revert the move
+
+        // Revert the move
+        piece.setBitboard(originalPosition);
+        Piece.allPieces = originalAllPieces;
+        Piece.whitePieces = originalWhitePieces;
+        Piece.blackPieces = originalBlackPieces;
+
+        // Restore the captured piece
+        if (capturedPiece != null) {
+            capturedPiece.setBitboard(movePosition);
+            Piece.allPieces |= movePosition;
+            if (capturedPiece.isWhite()) {
+                Piece.whitePieces |= movePosition;
+            } else {
+                Piece.blackPieces |= movePosition;
+            }
+        }
+
         return !isInCheck;
     }
 
-    public long filterMovesThatResolveCheck(Piece piece, long moves) {
+    public long filterMovesThatResolveCheck(Piece piece, long moves, long specificPiece) {
         long validMoves = 0L;
         for (int i = 0; i < 64; i++) {
             long movePosition = 1L << i;
-            if ((moves & movePosition) != 0 && doesMoveResolveCheck(piece, movePosition)) {
+            if ((moves & movePosition) != 0 && doesMoveResolveCheck(piece, movePosition, specificPiece)) {
                 validMoves |= movePosition;
             }
         }
         return validMoves;
+    }
+
+    public Piece getPieceAtPosition(long position) {
+        for (Piece piece : whitePieces) {
+            if ((piece.getBitboard() & position) != 0) {
+                return piece;
+            }
+        }
+        for (Piece piece : blackPieces) {
+            if ((piece.getBitboard() & position) != 0) {
+                return piece;
+            }
+        }
+        return null;
     }
 
 

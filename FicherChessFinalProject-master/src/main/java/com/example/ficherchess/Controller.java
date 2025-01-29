@@ -85,6 +85,7 @@ public class Controller implements IView {
         if (selectedPiece != null) {
             // Clicked on an empty square
             presenter.handlePieceMove(selectedRow, selectedCol, row, col);
+            removeSelectionHalo();
             selectedPiece = null;
         } else if (square.getChildren().size() > 1 && square.getChildren().get(1) instanceof ImageView) {
             // Clicked on a piece
@@ -112,7 +113,7 @@ public class Controller implements IView {
 
     @Override
     public void movePiece(int oldRow, int oldCol, int newRow, int newCol) {
-        removeSelectionHalo();
+
         System.out.println("movePiece called: " + oldRow + "," + oldCol + " to " + newRow + "," + newCol);
         StackPane oldSquare = getNodeByRowColumnIndex(oldRow, oldCol, chessBoard);
         StackPane newSquare = getNodeByRowColumnIndex(newRow, newCol, chessBoard);
