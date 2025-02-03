@@ -113,7 +113,6 @@ public class Controller implements IView {
 
     @Override
     public void movePiece(int oldRow, int oldCol, int newRow, int newCol) {
-
         System.out.println("movePiece called: " + oldRow + "," + oldCol + " to " + newRow + "," + newCol);
         StackPane oldSquare = getNodeByRowColumnIndex(oldRow, oldCol, chessBoard);
         StackPane newSquare = getNodeByRowColumnIndex(newRow, newCol, chessBoard);

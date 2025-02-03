@@ -58,7 +58,7 @@ public abstract class Piece {
 
         // Move right
         while ((temp & 0xFEFEFEFEFEFEFEFEL) != 0) {
-            temp >>= 1;
+            temp >>>= 1;
             if((temp & myPieces) != 0) break;
             moves |= temp;
             if ((temp & allPieces) != 0) break;
@@ -84,7 +84,7 @@ public abstract class Piece {
 
         // Move down
         while ((temp & 0xFFFFFFFFFFFFFF00L) != 0) {
-            temp >>= 8;
+            temp >>>= 8;
             if((temp & myPieces) != 0) break;
             moves |= temp;
             if ((temp & allPieces) != 0) break;
@@ -120,7 +120,7 @@ public abstract class Piece {
 
         // Move down-right
         while((temp & 0xFFFFFFFFFFFFFF00L) != 0 && (temp & 0x0101010101010101L) == 0){
-            temp >>= 9;
+            temp >>>= 9;
             if((temp & myPieces) != 0) break;
             Moves |= temp;
             if((temp & Piece.allPieces) != 0) break;
@@ -130,7 +130,7 @@ public abstract class Piece {
 
         // Move down-left
         while((temp & 0xFFFFFFFFFFFFFF00L) != 0 && (temp & 0x8080808080808080L) == 0){
-            temp >>= 7;
+            temp >>>= 7;
             if((temp & myPieces) != 0) break;
             Moves |= temp;
             if((temp & Piece.allPieces) != 0) break;

@@ -81,7 +81,7 @@ public class Model {
         selectedPiece = null;
 
         // Check if the move puts the opponent's king in check
-        if (isKingInCheck(isWhiteTurn)) {
+        if (isKingInCheck(!isWhiteTurn)) {
             System.out.println((isWhiteTurn ? "Black" : "White") + " king is in check!");
             Piece.check = true;
         }
@@ -110,7 +110,7 @@ public class Model {
         return moves;
     }
     public long findKingPosition(boolean isWhite) {
-        ArrayList<Piece> pieces = isWhite ? whitePieces : blackPieces;
+        ArrayList<Piece> pieces = isWhite ? blackPieces : whitePieces;
         for (Piece piece : pieces) {
             if (piece instanceof King) {
                 return piece.getBitboard();
@@ -120,7 +120,7 @@ public class Model {
     }
     public boolean isKingInCheck(boolean isWhite) {
         long kingPosition = findKingPosition(isWhite);
-        ArrayList<Piece> opponentPieces = isWhite ? blackPieces : whitePieces;
+        ArrayList<Piece> opponentPieces = isWhite ? whitePieces : blackPieces;
         for (Piece piece : opponentPieces) {
             if ((piece.possibleMoves(piece.getBitboard()) & kingPosition) != 0) {
                 return true;
@@ -135,46 +135,49 @@ public class Model {
         long originalWhitePieces = Piece.whitePieces;
         long originalBlackPieces = Piece.blackPieces;
 
-        // Find the piece at the move position (if any)
-        Piece capturedPiece = getPieceAtPosition(movePosition);
-
-        // Perform the move
-        piece.setBitboard((originalPosition & ~specificPiece) | movePosition);
-
-        if (piece.isWhite()) {
-            Piece.whitePieces = (originalWhitePieces & ~specificPiece) | movePosition;
-        } else {
-            Piece.blackPieces = (originalBlackPieces & ~specificPiece) | movePosition;
-        }
-
-        // Remove the captured piece from the board
-        if (capturedPiece != null) {
-            capturedPiece.setBitboard(capturedPiece.getBitboard() & ~movePosition);
-            Piece.allPieces &= ~movePosition;
-            if (capturedPiece.isWhite()) {
-                Piece.whitePieces &= ~movePosition;
-            } else {
-                Piece.blackPieces &= ~movePosition;
+        // Save the state of the opponent piece that might be captured
+        Piece capturedPiece = null;
+        ArrayList<Piece> opponentPieces = piece.isWhite() ? blackPieces : whitePieces;
+        for (Piece opponentPiece : opponentPieces) {
+            if ((opponentPiece.getBitboard() & movePosition) != 0) {
+                capturedPiece = opponentPiece;
+                break;
             }
         }
-        Piece.allPieces = (originalAllPieces & ~specificPiece) | movePosition;
 
-        boolean isInCheck = isKingInCheck(piece.isWhite());
+        // Make the move
+        piece.setBitboard(movePosition | (piece.getBitboard() & ~specificPiece));
+        Piece.allPieces = (Piece.allPieces & ~specificPiece) | movePosition;
+        if (piece.isWhite()) {
+            Piece.whitePieces = (Piece.whitePieces & ~specificPiece) | movePosition;
+        } else {
+            Piece.blackPieces = (Piece.blackPieces & ~specificPiece) | movePosition;
+        }
+        if (capturedPiece != null) {
+            capturedPiece.setBitboard(capturedPiece.getBitboard() & ~movePosition);
+            if (piece.isWhite()) {
+                Piece.blackPieces &= ~movePosition;
+            } else {
+                Piece.whitePieces &= ~movePosition;
+            }
+        }
+
+        boolean isInCheck = isKingInCheck(!piece.isWhite());
 
         // Revert the move
         piece.setBitboard(originalPosition);
         Piece.allPieces = originalAllPieces;
-        Piece.whitePieces = originalWhitePieces;
-        Piece.blackPieces = originalBlackPieces;
-
-        // Restore the captured piece
+        if (piece.isWhite()) {
+            Piece.whitePieces = originalWhitePieces;
+        } else {
+            Piece.blackPieces = originalBlackPieces;
+        }
         if (capturedPiece != null) {
-            capturedPiece.setBitboard(movePosition);
-            Piece.allPieces |= movePosition;
-            if (capturedPiece.isWhite()) {
-                Piece.whitePieces |= movePosition;
-            } else {
+            capturedPiece.setBitboard(capturedPiece.getBitboard() | movePosition);
+            if (piece.isWhite()) {
                 Piece.blackPieces |= movePosition;
+            } else {
+                Piece.whitePieces |= movePosition;
             }
         }
 
@@ -190,20 +193,6 @@ public class Model {
             }
         }
         return validMoves;
-    }
-
-    public Piece getPieceAtPosition(long position) {
-        for (Piece piece : whitePieces) {
-            if ((piece.getBitboard() & position) != 0) {
-                return piece;
-            }
-        }
-        for (Piece piece : blackPieces) {
-            if ((piece.getBitboard() & position) != 0) {
-                return piece;
-            }
-        }
-        return null;
     }
 
 

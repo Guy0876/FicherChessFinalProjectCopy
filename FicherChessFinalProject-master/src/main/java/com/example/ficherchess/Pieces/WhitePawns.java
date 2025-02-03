@@ -11,15 +11,15 @@ public class WhitePawns  extends Piece {
         long opponentPieces = isWhite ? blackPieces : whitePieces;
 
         // Move one step forward
-        long oneStepForward = (specificPawn >> 8) & ~Piece.allPieces;
+        long oneStepForward = (specificPawn >>> 8) & ~Piece.allPieces;
         long twoStepsForward = 0;
         if(isPawnOnStartingPosition()) {
             // Move two steps forward from the initial position
-            twoStepsForward = ((specificPawn & 0x00FF000000000000L) >> 16) & ~Piece.allPieces & ~(Piece.allPieces >> 8);
+            twoStepsForward = ((specificPawn & 0x00FF000000000000L) >>> 16) & ~Piece.allPieces & ~(Piece.allPieces >>> 8);
         }
         // Capture diagonally
-        long captureLeft = (specificPawn & 0x7F7F7F7F7F7F7F7FL) >> 9 & opponentPieces;
-        long captureRight = (specificPawn & 0xFEFEFEFEFEFEFEFEL) >> 7 & opponentPieces;
+        long captureLeft = (specificPawn & 0x7F7F7F7F7F7F7F7FL) >>> 9 & opponentPieces;
+        long captureRight = (specificPawn & 0xFEFEFEFEFEFEFEFEL) >>> 7 & opponentPieces;
 
         return oneStepForward | twoStepsForward | captureLeft | captureRight;
     }

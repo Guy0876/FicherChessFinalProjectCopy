@@ -15,13 +15,13 @@ public class King extends Piece {
         long up = specificKing << 8 & ~myPieces;
 
         // Move down
-        long down = specificKing >> 8 & ~myPieces;
+        long down = specificKing >>> 8 & ~myPieces;
 
         // Move left
         long left = specificKing << 1 & ~myPieces;
 
         // Move right
-        long right = specificKing >> 1 & ~myPieces;
+        long right = specificKing >>> 1 & ~myPieces;
 
         // Move up-right
         long upRight = specificKing << 7 & ~myPieces;
@@ -30,10 +30,10 @@ public class King extends Piece {
         long upLeft = specificKing << 9 & ~myPieces;
 
         // Move down-right
-        long downRight = specificKing >> 9 & ~myPieces;
+        long downRight = specificKing >>> 9 & ~myPieces;
 
         //Move down-left
-        long downLeft = specificKing >> 7 & ~myPieces;
+        long downLeft = specificKing >>> 7 & ~myPieces;
 
         return (up | down | left | right | upRight | upLeft | downRight | downLeft);
     }
