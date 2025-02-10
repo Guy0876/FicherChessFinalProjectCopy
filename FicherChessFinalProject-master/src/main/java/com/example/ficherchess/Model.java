@@ -84,6 +84,10 @@ public class Model {
         if (isKingInCheck(!isWhiteTurn)) {
             System.out.println((isWhiteTurn ? "Black" : "White") + " king is in check!");
             Piece.check = true;
+
+            if(isCheckmate(isWhiteTurn)) {
+                System.out.println((isWhiteTurn ? "White" : "Black") + " won the game !!!");
+            }
         }
     }
 
@@ -185,6 +189,7 @@ public class Model {
     }
 
     public long filterMovesThatResolveCheck(Piece piece, long moves, long specificPiece) {
+
         long validMoves = 0L;
         for (int i = 0; i < 64; i++) {
             long movePosition = 1L << i;
@@ -193,6 +198,26 @@ public class Model {
             }
         }
         return validMoves;
+    }
+
+    public boolean isCheckmate(boolean isWhite) {
+
+        ArrayList<Piece> pieces = isWhite ? whitePieces : blackPieces;
+        for (Piece piece : pieces) {
+            long temp = piece.getBitboard();
+            for(int i = 0; i < 64; i++) {
+                long movePosition = 1L << i;
+                if((temp & movePosition) != 0) {
+                    long possibleMoves = piece.possibleMoves(movePosition);
+                    possibleMoves = filterMovesThatResolveCheck(piece, possibleMoves, movePosition);
+                    if (possibleMoves != 0) {
+                        return false;
+                    }
+                }
+            }
+
+        }
+        return true;
     }
 
 
